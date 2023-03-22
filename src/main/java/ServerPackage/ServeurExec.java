@@ -2,7 +2,6 @@ package ServerPackage;
 import Classes.Client;
 
 import java.io.IOException;
-import java.io.InterruptedIOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Collection;
@@ -30,10 +29,10 @@ public class ServeurExec {
     }
     //Méthode pour vérifier la présence d'un psuedo dans la liste des utilisateurs
 
-    public static boolean isPsuedoTaken(String psuedo){
+    public static boolean isPseudoTaken(String pseudo){
 
         for (Client cl : ServeurExec.getClients()){
-            if (cl.getPsuedo().equals(psuedo)){
+            if (cl.getPseudo().equals(pseudo)){
                 return true;
 
             }
@@ -64,8 +63,8 @@ public class ServeurExec {
     public static void broadcast(String message, Client sender,int action) {
         for (Client client : clients.values()) {
             // On vérifie que le client a un pseudonyme
-            if (!client.getPsuedo().equals("")) {
-                ServeurMessageSender mesSender = new ServeurMessageSender(client, message, action ,sender.getPsuedo());
+            if (!client.getPseudo().equals("")) {
+                ServeurMessageSender mesSender = new ServeurMessageSender(client, message, action ,sender.getPseudo());
                 // On soumet la tâche à exécuter dans le ThreadPool
                 mesSender.run();
             }

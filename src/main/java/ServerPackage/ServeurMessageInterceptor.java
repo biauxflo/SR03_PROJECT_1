@@ -3,7 +3,6 @@ package ServerPackage;
 import Classes.Client;
 
 import java.io.DataInputStream;
-import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -39,10 +38,10 @@ public class ServeurMessageInterceptor extends Thread {
                 do {
                     pseudoAttempts++;
                     pseudo = dataIn.readUTF();
-                    if (ServeurExec.isPsuedoTaken(pseudo)) {
+                    if (ServeurExec.isPseudoTaken(pseudo)) {
                         dataOut.writeUTF("Ce pseudo est déjà pris, veuillez en choisir un autre.");
                     }
-                } while (ServeurExec.isPsuedoTaken(pseudo) && pseudoAttempts < MAX_PSEUDO_ATTEMPTS);
+                } while (ServeurExec.isPseudoTaken(pseudo) && pseudoAttempts < MAX_PSEUDO_ATTEMPTS);
 
                 if (!ServeurExec.getListClients().containsKey(client.getId())) {
                     LOGGER.log(Level.WARNING, "Client with ID {0} not found in client list.", client.getId());
@@ -50,7 +49,7 @@ public class ServeurMessageInterceptor extends Thread {
                 }
 
                 Client newClient = ServeurExec.getListClients().get(client.getId());
-                newClient.setPsuedo(pseudo);
+                newClient.setPseudo(pseudo);
                 ServeurExec.addClient(newClient);
                 this.setClient(newClient);
                 ServeurExec.broadcast("", this.getClient(), 0);

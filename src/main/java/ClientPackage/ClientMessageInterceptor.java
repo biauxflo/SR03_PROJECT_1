@@ -37,12 +37,12 @@ public class ClientMessageInterceptor extends Thread {
             try{
                 this.socket.close();
             }catch (IOException e){
-                System.err.println("Erreur lors de la fermeture du scoket ");
+                System.err.println("Erreur lors de la fermeture du socket ");
             }
 
         } finally {
             //Avertissement de déconexion du serveur
-                System.out.println("Déconexion du serveur de chat");
+                System.out.println("Déconnexion du serveur de chat");
                 interrupt();
         }
     }

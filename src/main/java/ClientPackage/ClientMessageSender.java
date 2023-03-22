@@ -36,7 +36,7 @@ public class ClientMessageSender extends Thread {
 
             // Envoyer les messages entrés par l'utilisateur au serveur
             String message="";
-            boolean check= false;
+            boolean check = false;
 
             do {
                 message = sc.nextLine();
